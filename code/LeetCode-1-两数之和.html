@@ -1,0 +1,55 @@
+<!--
+ * @Descripttion: LeetCode-1-两数之和
+ * @Author: ZXS
+ * @Date: 2022-07-28 21:26:09
+ * @LastEditors: ZXS
+ * @LastEditTime: 2022-07-28 22:04:42
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LeetCode-1-两数之和</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @param {number[]} nums
+       * @param {number} target
+       * @return {number[]}
+       */
+
+      //  解法一：暴力解法，两次循环判断
+      // 由于两次循环，时间复杂度较高
+      var twoSum1 = function (nums, target) {
+        for (var i = 0; i < nums.length; i++) {
+          for (var k = 0; k < nums.length; k++) {
+            // 这里还要加一个条件 i !== k 就是不能拿同一个元素比较
+            if (nums[i] + nums[k] === target && i !== k) {
+              return [i, k]
+            }
+          }
+        }
+      }
+
+      //  解法二：利用 Map 进行记录
+      // 一次循环，时间复杂度低，但是创建了一个Map集合，牺牲了内驱来换取时间
+      var twoSum2 = function (nums, target) {
+        var map = new Map()
+        var result = []
+        nums.forEach((item, index) => {
+          if (map.has(target - item)) {
+            result = [map.get(target - item), index]
+            return
+          }
+          map.set(item, index)
+        })
+        return result
+      }
+
+      console.log(twoSum1([2, 7, 11, 15], 9))
+    </script>
+  </body>
+</html>
