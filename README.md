@@ -25,7 +25,7 @@
 
 # LeetCode-1-两数之和
 
-<img src="C:\Users\小双哥哥\Desktop\刷题记录\LeetCode\images\LeetCode-1-两数之和.png" style="zoom:80%;" />
+<img src="https://gitee.com/zxs5188k/LeetCode/blob/master/images/LeetCode-1-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.png" style="zoom:80%;" />
 
 ```js
 //  解法一：暴力解法，两次循环判断
