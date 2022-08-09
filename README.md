@@ -3,7 +3,7 @@
  * @Author: ZXS
  * @Date: 2022-07-29 00:01:33
  * @LastEditors: ZXS
- * @LastEditTime: 2022-07-29 22:40:34
+ * @LastEditTime: 2022-08-09 23:15:50
 -->
 
 ### 前言
@@ -31,6 +31,7 @@
 - [目录结构](#目录结构)
 - [LeetCode-1-两数之和](#leetcode-1-两数之和)
 - [LeetCode-206-反转链表](#leetcode-206-反转链表)
+- [LeetCode-21-合并两个有序链表](#leetcode-21-合并两个有序链表)
 
 # LeetCode-1-两数之和
 
@@ -73,8 +74,6 @@ var twoSum2 = function (nums, target) {
 
 ![image text](https://gitee.com/zxs5188k/LeetCode/raw/master/images/LeetCode-206-反转链表.png)
 
-<img src="C:\Users\小双哥哥\Desktop\LeetCode刷题记录\LeetCode\images\LeetCode-206-反转链表.png" style="zoom:80%;" />
-
 ```js
 // 熟悉链表的基本结构就可以解出
 // 对链表进行遍历，声明一个新的头，让当前节点的指针指向新的头,再把当前节点赋值给新的头
@@ -87,6 +86,31 @@ var reverseList = function (head) {
     curr.next = prev
     prev = curr
     curr = next
+  }
+}
+```
+
+# LeetCode-21-合并两个有序链表
+
+![image text](https://gitee.com/zxs5188k/LeetCode/raw/master/images/LeetCode-21-合并两个有序链表.png)
+
+```js
+// 思路：可以想象递归就是程序内部维护了一个栈，这题用递归把最小的先压入栈，最后出栈的时候，依次连接在一起就可以了
+// 递归终止条件：list1或list2为空时结束
+// 返回值：返回排好的链表头，递归到最后最先返回的一定是链表的最后一项
+var mergeTwoLists = function (list1, list2) {
+  if (list1 == null) {
+    return list2
+  }
+  if (list2 == null) {
+    return list1
+  }
+  if (list1.val < list2.val) {
+    list1.next = mergeTwoLists(list1.next, list2)
+    return list1
+  } else {
+    list2.next = mergeTwoLists(list2.next, list1)
+    return list2
   }
 }
 ```
