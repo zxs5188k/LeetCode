@@ -1,4 +1,5 @@
 <!--
+
  * @Descripttion: 说明
  * @Author: ZXS
  * @Date: 2022-07-29 00:01:33
@@ -114,3 +115,41 @@ var mergeTwoLists = function (list1, list2) {
   }
 }
 ```
+
+**迭代解法：**
+
+把每个节点想成珠子，合并的过程就是用线把珠子串起来，比较两个链表当前节点大小，串进小的，再将指向较小值的指针后移，直到某个链表的珠子全都串完，再把另一个链表剩下的珠子一次性都给串进去
+
+~~~js
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} list1
+ * @param {ListNode} list2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function(list1, list2) {
+        var head = new ListNode(0)  //先往里面放了个无关数
+        var cur = head
+        //直接每次判断两边的节点值，cur.next指向较小值，更新cur的位置，list前进
+        while(list1 && list2){  
+            if(list1.val < list2.val){
+                cur.next = list1
+                list1 = list1.next
+            } else {
+                 cur.next = list2
+                list2 = list2.next
+            }
+            cur = cur.next
+        }
+        cur.next = list1 ? list1 : list2  //cur.next指向剩余链表
+        return head.next  //最开始的节点不属于两个链表，返回下一个节点组成的有序链表
+        };
+};
+~~~
+
