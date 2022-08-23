@@ -214,3 +214,36 @@ var singleNumber = function (nums) {
 }
 // 救命可是时间复杂度真的好高
 ```
+
+
+
+# LeetCode-169-多数元素
+
+![image text](https://gitee.com/zxs5188k/LeetCode/raw/master/images/LeetCode-169-多数元素.png)
+
+**1.排序**：排序数组，如果只有一个数字出现的次数大于 n/2，则中间的那位一定是这个数
+
+~~~js
+var majorityElement = function(nums) {
+    nums.sort((a,b) => a - b)
+    return nums[Math.floor(nums.length / 2)]
+};
+~~~
+
+**2.通过一个map**：map存储数字对应的出现次数，用来与 n/2 比较
+
+~~~js
+var majorityElement = function(nums) {
+    var map = new Map()
+    var num = nums.length/2
+    var result = null
+    nums.forEach( item => {
+        map.set((map.get(item) + 1 || 0) + 1)
+        if(map.get(item)>num) {
+            result = item
+        }
+    })
+    return result
+};
+~~~
+
