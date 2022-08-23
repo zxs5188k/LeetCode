@@ -4,7 +4,7 @@
  * @Author: ZXS
  * @Date: 2022-07-29 00:01:33
  * @LastEditors: ZXS
- * @LastEditTime: 2022-08-23 21:19:24
+ * @LastEditTime: 2022-08-23 22:34:24
 -->
 
 ### 前言
@@ -34,6 +34,7 @@
 - [LeetCode-206-反转链表](#leetcode-206-反转链表)
 - [LeetCode-21-合并两个有序链表](#leetcode-21-合并两个有序链表)
 - [LeetCode-94-二叉树的中序遍历](#leetcode-94-二叉树的中序遍历)
+- [LeetCode-136-只出现一次的数字](#leetcode-136-只出现一次的数字)
 
 # LeetCode-1-两数之和
 
@@ -185,4 +186,31 @@ var inorderTraversal = function (root) {
   inorder(root)
   return result
 }
+```
+
+# LeetCode-136-只出现一次的数字
+
+![image text](https://gitee.com/zxs5188k/LeetCode/raw/master/images/LeetCode-21-只出现一次的数字.png)
+
+很无语的算法，`^`异或运算符，始终不理解是怎么运算的，题目规定其他数只出现两次，如果不是只出现两次，异或运算符又解不了
+
+```js
+// 异或运算符解
+var singleNumber = function (nums) {
+  return nums.reduce((a, b) => a ^ b)
+}
+```
+
+```js
+// 自己的思路，灵活运用数组的api
+var singleNumber = function (nums) {
+  var result = null
+  nums.forEach((item) => {
+    if (nums.indexOf(item) == nums.lastIndexOf(item)) {
+      result = item
+    }
+  })
+  return result
+}
+// 救命可是时间复杂度真的好高
 ```
